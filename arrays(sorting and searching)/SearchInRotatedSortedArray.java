@@ -21,7 +21,7 @@ public class SearchInRotatedSortedArray {
         // for line 2
          else{
             //case c
-            if(arr[mid]>tar && tar>arr[ei]){
+            if(arr[mid]<=tar && tar<=arr[ei]){
                 return search(arr, tar, mid+1, ei);
             }
             //case d
