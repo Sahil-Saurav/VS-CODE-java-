@@ -88,39 +88,21 @@ public class Rough2 {
             arr[j] = temp[i];
         }
     }
-    public static int majElem(int arr[]){
-        //find max value
-        int max = Integer.MIN_VALUE;
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]>max){
-                max = arr[i];
-            }
+    public static void subSets(String str,int i,String ans){
+        if(i==ans.length()){
+            System.out.println(ans);
+            return;
         }
-        //create countarray and count the number
-        int[] count = new int[max+1];
-        for(int i = 0;i<arr.length;i++){
-            count[arr[i]]++;
-        }
-        //traversing count to find maxnumber
-        int MajNum = 0;
-        for(int i = 1;i<count.length;i++){
-            if(count[i]>MajNum){
-                MajNum = count[i];
-            }
-        }
-        for(int i = 0;i<count.length;i++){
-            if(count[i]==MajNum){
-                return i;
-            }
-        }
-        return -1;
+        //yes
+        subSets(str, i+1, ans+str.charAt(i));
+        //no
+        subSets(str, i+1, ans);
     }
     public static void main(String[] args){
-        int[] arr = {-1,1,1,1,2,1};
-        /*mergeSort(arr,0,arr.length-1);
+        int[] arr = {3,2,3};
+        mergeSort(arr,0,arr.length-1);
         for(int e : arr){
             System.out.print(e);
-        }*/
-        System.out.println(majElem(arr));
+        }
     }    
 }
