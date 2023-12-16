@@ -3,6 +3,7 @@ public class PermutationsInStr {
         //base
         if(str.length()==0){
             System.out.println(ans);
+            return;
         }
         for(int i=0;i<str.length();i++){
             char curr = str.charAt(i);
