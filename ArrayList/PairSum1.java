@@ -11,9 +11,9 @@ public class PairSum1 {
                 break;
             }
             else{
-                if(arr.get(Rp)>key){
+                /*if(arr.get(Rp)>key){
                     Rp--;
-                }
+                }*/
                 if(arr.get(Lp)+arr.get(Rp)>key){
                     Rp--;
                 }
