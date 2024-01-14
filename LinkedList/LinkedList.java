@@ -74,6 +74,56 @@ public class LinkedList {
         size--;
         return val;
     }
+    public int removeLast(){
+        int val;
+        Node prev = head;
+        if(head == null){
+            System.out.println("LL is already empty");
+            return Integer.MIN_VALUE;
+        }
+        else if(size==1){
+            head = tail = null;
+            size = 0;
+            val = tail.data;
+            return val;
+        }
+        for(int i=0;i<size-2;i++){
+            prev = prev.next;
+        }
+        val = prev.next.data;
+        prev.next = null;
+        tail = prev;
+        size--;
+        return val;
+    }
+    public int itrSearch(int key){
+        Node temp = head;
+        int idx = 0;
+        while (temp != null){
+            temp = temp.next;
+            idx++;
+            if(temp.data==key){
+                return idx;
+            }
+        }
+        return -1;
+    }
+    public int helper(Node head,int key){
+        if(head == null){
+            return -1;
+        }
+        if(head.data == key){
+            return 0;
+        }
+        int idx = helper(head.next, key);
+        if(idx == -1){
+            return -1;
+        }
+        return idx+1;
+    }
+    public int recSearch(int key){
+        return helper(head,key);
+    }
     
 
     public static void main(String[] args){
@@ -84,8 +134,7 @@ public class LinkedList {
         l1.addLast(4);
         l1.addLast(5);
         l1.print();
-        l1.removeFirst();
-        l1.print();
-        System.out.println(l1.size);
+        System.out.println(l1.itrSearch(3));
+        System.out.println(l1.recSearch(3));
     }
 }
