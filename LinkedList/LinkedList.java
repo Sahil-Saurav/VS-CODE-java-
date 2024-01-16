@@ -157,16 +157,49 @@ public class LinkedList {
         prev.next = prev.next.next;
         return;
     }
-
+    public Node midNode(){
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    public boolean checkPalindrome(){
+        if(head == null || head.next==null){
+            return true;
+        }
+    Node mid = midNode();
+    Node curr = mid;
+    Node prev = null;
+    Node next;
+    while(curr != null){
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    Node right = tail;
+    Node left = head;
+    while(right != null){
+        if(right.data != left.data){
+            return false;
+        }
+        left = left.next;
+        right = right.next;
+    }
+    return true;
+}  
+    
     public static void main(String[] args){
         LinkedList l1 = new LinkedList();
-        l1.addFirst(2);
+        //l1.addFirst(2);
         l1.addFirst(1);
-        l1.addLast(3);
-        l1.addLast(4);
-        l1.addLast(5);
+        l1.addLast(2);
+        l1.addLast(1);
         l1.print();
-        l1.deleteNthfromEnd(3);
-        l1.print();
+        System.out.println(l1.checkPalindrome());
+        
     }
 }
