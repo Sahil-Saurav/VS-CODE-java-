@@ -124,7 +124,39 @@ public class LinkedList {
     public int recSearch(int key){
         return helper(head,key);
     }
-    
+    public void reverse(){
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+    public void deleteNthfromEnd(int pos){
+        int sz = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+        if(pos==sz){
+            head = head.next;
+            return;
+        }
+        int toFind = sz-pos;
+        Node prev = head;
+        int i = 1;
+        while (i<toFind) {
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
 
     public static void main(String[] args){
         LinkedList l1 = new LinkedList();
@@ -134,7 +166,7 @@ public class LinkedList {
         l1.addLast(4);
         l1.addLast(5);
         l1.print();
-        System.out.println(l1.itrSearch(3));
-        System.out.println(l1.recSearch(3));
+        l1.deleteNthfromEnd(3);
+        l1.print();
     }
 }
